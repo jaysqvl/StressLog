@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- TextView for the graph title -->
     <TextView
         android:id="@+id/graph_title"
         android:layout_width="wrap_content"
@@ -15,12 +14,49 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
-    <!-- LineChart to display stress data -->
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/line_chart"
+    <!-- TextView for the graph title -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Container for the LineChart and axis titles -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Y-axis title -->
+            <TextView
+                android:id="@+id/y_axis_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/graph_y_axis_label"
+                android:textSize="14sp"
+                android:rotation="-90"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="-30dp" />
+
+            <!-- LineChart to display stress data -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="0dp"
+                android:layout_gravity="center" />
+
+            <!-- X-axis title -->
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/x_axis_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/graph_x_axis_label"
+            android:textSize="14sp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
 
     <!-- TextView for the summary title -->
     <TextView
@@ -33,6 +69,39 @@
         android:layout_marginBottom="8dp" />
 
     <!-- RecyclerView for displaying summary results -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:layout_margin="0dp"
+        android:background="@drawable/table_row_border_header">
+
+        <TextView
+            android:id="@+id/time_col_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textSize="16sp"
+            android:text="@string/summary_time_placeholder" />
+
+        <TextView
+            android:id="@+id/stress_col_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textSize="16sp"
+            android:text="@string/summary_stress_placeholder" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/summary_recycler_view"
         android:layout_width="match_parent"

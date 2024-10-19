@@ -6,6 +6,9 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.stressmeter.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,8 +19,11 @@ class ImageResponseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_response)
 
-        // Get the selected image resource ID from the intent
+        // Get the selected image resource ID from the intent passed by the home fragment
+        // The setupGridView function passes this ID to this activity
         val imageResId = intent.getIntExtra("image_res_id", -1)
+
+        // Check if a valid image resource ID was passed
         if (imageResId == -1) {
             finish() // Exit the activity if no valid image was passed
             return
@@ -27,28 +33,33 @@ class ImageResponseActivity : AppCompatActivity() {
         val imageView: ImageView = findViewById(R.id.selectedImageView)
         imageView.setImageResource(imageResId)
 
-        // Set up Cancel button
         val cancelButton: Button = findViewById(R.id.cancelButton)
         cancelButton.setOnClickListener {
             // Simply close this activity
             finish()
         }
 
-        // Set up Confirm button
-        val confirmButton: Button = findViewById(R.id.confirmButton)
-        confirmButton.setOnClickListener {
-            // Save the timestamp and stress score to CSV
-            saveStressData(imageResId)
-            finish() // Close this activity
+        // Set up Submit button
+        val submitButton: Button = findViewById(R.id.submitButton)
+        submitButton.setOnClickListener {
+            // Save the timestamp and stress score to CSV in a background thread
+            CoroutineScope(Dispatchers.IO).launch {
+                saveStressData(imageResId)
+            }
+
+            // Close the entire app
+            finishAffinity() // Closes all activities and exits the app
         }
     }
 
+    // Coroutine IO thread job to save timestamp and stress score to CSV
     private fun saveStressData(imageResId: Int) {
-        // Assign a "stress score" based on the image resource ID position or some mapping logic
-        val stressScore = imageResId % 16 + 1  // Simplified scoring based on resource ID modulo
+        // Assign a "stress score" based on the image resource ID position
+        val stressScore = imageResId % 16 + 1
 
         // Get the current timestamp
-        val timestamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        val timestamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                                        Locale.getDefault()).format(Date())
 
         // Write to CSV file (stress_timestamp.csv)
         val data = "$timestamp,$stressScore\n"

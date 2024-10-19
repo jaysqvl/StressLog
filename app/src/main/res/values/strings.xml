@@ -6,19 +6,21 @@
     <string name="nav_header_subtitle">jay_esquivel@sfu.ca</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_clear_results">Clear Results</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_results">Results</string>
     <string name="home_instructions">Touch the image that best captures how stressed you feel right now</string>
     <string name="btn_more_images">More Images</string>
     <string name="btn_cancel">Cancel</string>
-    <string name="btn_confirm">Confirm</string>
+    <string name="btn_submit">Submit</string>
     <string name="cont_desc_chosen_stress_image">Selected Stress Image</string>
     <string name="results_graph_title">A graph showing your Stress Levels</string>
     <string name="results_table_title">Summary of Results</string>
     <string name="summary_stress_placeholder">Stress</string>
     <string name="summary_time_placeholder">Time</string>
     <string name="cont_desc_grid_item">Image symbolizing a stress level</string>
+    <string name="graph_x_axis_label">Instances</string>
+    <string name="graph_y_axis_label">Stress Level</string>
 
 </resources>
