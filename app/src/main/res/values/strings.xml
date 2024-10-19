@@ -8,7 +8,7 @@
 
     <string name="action_clear_results">Clear Results</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_stressmeter">Home</string>
     <string name="menu_results">Results</string>
     <string name="home_instructions">Touch the image that best captures how stressed you feel right now</string>
     <string name="btn_more_images">More Images</string>

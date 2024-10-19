@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Existing TextView from the template -->
+    <!-- Home Title -->
     <TextView
         android:id="@+id/text_home"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp" />
 
-    <!-- GridView for displaying stress images -->
+    <!-- GridView for stress images -->
     <GridView
         android:id="@+id/grid_view"
         android:layout_width="match_parent"
