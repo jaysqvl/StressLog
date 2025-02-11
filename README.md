@@ -1,4 +1,4 @@
-# StressMeter
+# StressLog
 
 The fun way to track your daily stress levels
 
